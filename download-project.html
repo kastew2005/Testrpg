@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сборка ZIP — Пепел королевства</title>
+<style>
+body{margin:0;background:#12100d;color:#ead7ad;font:16px system-ui;min-height:100vh;display:grid;place-items:center;padding:24px;box-sizing:border-box}
+main{max-width:520px;border:1px solid #876739;border-radius:12px;background:#241b12;padding:24px;box-shadow:0 12px 50px #0008}
+h1{color:#f4d28b}p{line-height:1.55;color:#c4b18d}
+button{width:100%;padding:15px;border:1px solid #f2d38b;border-radius:7px;background:linear-gradient(#c79a45,#6f4b21);color:#fff0c7;font-weight:800;letter-spacing:1px}
+small{display:block;margin-top:14px;color:#988465}
+</style>
+<main><h1>Пепел королевства</h1><p>Собери исходники игры в один ZIP-архив. Для сборки нужен доступ к CDN JSZip.</p><button id="build">СОБРАТЬ И СКАЧАТЬ ZIP</button><small id="status">Исходники должны находиться рядом с этой страницей.</small></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const names=["index.html","styles.css","canvas-avatars.js","app.js","README.md"];
+document.getElementById("build").addEventListener("click",async()=>{
+ const status=document.getElementById("status"),zip=new JSZip();
+ if(!window.JSZip){status.textContent="JSZip не загрузился. Проверь подключение к интернету и обнови страницу.";return}
+ try{
+  for(const name of names){const response=await fetch(name);if(!response.ok)throw new Error("Не найден файл "+name);zip.file("pepel-korolevstva/"+name,await response.text())}
+  status.textContent="Создаём архив...";
+  const blob=await zip.generateAsync({type:"blob"});
+  const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="pepel-korolevstva.zip";a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);status.textContent="Архив готов. Проверь папку загрузок.";
+ }catch(e){status.textContent="Ошибка сборки: "+e.message+". Открой эту страницу с HTTPS-хостинга или локального сервера."}
+});
+</script></html>

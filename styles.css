@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Roboto+Slab:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:#10100e; --panel:#1c1913; --panel2:#292116; --gold:#d8ad58; --gold-hi:#ffe2a0;
+  --muted:#a9997a; --text:#eee0c1; --green:#38865c; --red:#b83c43; --blue:#397fbd;
+  --border:#72562e; --shadow:0 6px 18px #0008, inset 0 1px #ffffff10;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0b0b09;color:var(--text);font-family:"Roboto Slab",Georgia,serif;overscroll-behavior:none;touch-action:manipulation}
+button,input{font:inherit}button{color:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:2px}
+#app{position:relative;width:100%;height:100%;height:100dvh;max-width:650px;margin:auto;overflow:hidden;background:radial-gradient(ellipse at 50% 0,#3b2b17 0,#17140f 42%,#0d0d0b 100%)}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;min-height:0;padding:max(12px,env(safe-area-inset-top)) 13px max(9px,env(safe-area-inset-bottom));transition:opacity .35s,transform .35s}
+.hidden{display:none!important}
+.eyebrow{font:700 9px "Cinzel",serif;letter-spacing:2px;color:#c8a25b;text-transform:uppercase}
+.crest{width:48px;height:48px;margin:3px auto 9px;display:grid;place-items:center;transform:rotate(45deg);border:2px solid #d1a550;background:linear-gradient(145deg,#3d2b16,#14100b);box-shadow:0 0 20px #d6a33b2b,inset 0 0 0 3px #120e09}
+.crest span{transform:rotate(-45deg);font:800 26px "Cinzel";color:#ffdc8b;text-shadow:0 0 12px #e3a93b}
+.game-title{font:800 clamp(26px,7vw,39px)/1.02 "Cinzel",serif;text-align:center;margin:2px 0 8px;color:#ffda87;text-shadow:0 2px #482b0c,0 0 22px #f2a02d50;animation:titleGlow 3s ease-in-out infinite alternate}
+.game-title span{display:block;font-size:.72em;letter-spacing:3px;color:#f4e1b7}
+@keyframes titleGlow{to{text-shadow:0 2px #482b0c,0 0 30px #f2a02d80}}
+.intro{text-align:center;color:#b7a17b;font-size:11px;margin:0 0 12px}
+.section-heading{display:flex;align-items:center;justify-content:center;gap:9px;font:700 10px "Cinzel",serif;letter-spacing:1.5px;color:var(--gold);margin:9px 0}
+.section-heading i{height:1px;flex:1;background:linear-gradient(90deg,transparent,#92703b)}
+.section-heading i:last-child{transform:scaleX(-1)}
+.race-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.race-card{min-width:0;padding:7px 3px 9px;border:1px solid #5e4828;border-radius:6px;background:linear-gradient(150deg,#342719,#17130e);box-shadow:var(--shadow);display:flex;align-items:center;flex-direction:column;gap:4px;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;overflow:hidden}
+.race-card:active{transform:scale(.97)}
+.race-card.selected{transform:scale(1.035);border-color:#ffe19a;box-shadow:0 0 0 1px #bb8c39,0 0 20px #f5c3574d,inset 0 0 16px #d8a64216}
+.race-card.selected:after{content:"";position:absolute;inset:-40%;pointer-events:none;background:conic-gradient(from 0deg,transparent,#f9d98c77,transparent 25%);animation:sparkSpin 3s linear infinite}
+@keyframes sparkSpin{to{transform:rotate(360deg)}}
+.avatar{width:100%;max-width:105px;height:auto;aspect-ratio:1;position:relative;z-index:1}
+.race-card b{font:700 11px "Cinzel";position:relative;z-index:1}
+.race-card small{font-size:8px;color:#a89777;position:relative;z-index:1}
+.panel{border:1px solid #624b2a;border-radius:7px;background:linear-gradient(145deg,#2d2418ed,#17140fef);box-shadow:var(--shadow),inset 0 0 0 2px #100e0a}
+.race-info{margin-top:10px;padding:10px 12px;min-height:105px;animation:riseIn .3s ease}
+.race-info h2{font:700 16px "Cinzel";color:#ffdc8c;margin:0 0 5px}
+.race-info p{font-size:11px;line-height:1.45;color:#c5b28e;margin:0 0 5px}
+.race-info .good{color:#9fd39a}.race-info .bad{color:#e49b8d}.race-info .passive{color:#e7c77d}
+@keyframes riseIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.check-row{display:flex;align-items:center;gap:9px;margin:6px 0 8px;min-height:28px;font-size:11px;color:#ddcba8}
+.check-row input{position:absolute;opacity:0}.checkmark{width:18px;height:18px;flex:0 0 18px;border:1px solid #9b783c;border-radius:3px;background:#15110c;position:relative}
+.check-row input:checked+.checkmark{background:#80602b;box-shadow:inset 0 0 0 3px #21180d}
+.check-row input:checked+.checkmark:after{content:"";position:absolute;left:5px;top:1px;width:5px;height:9px;border-right:2px solid #ffe5a3;border-bottom:2px solid #ffe5a3;transform:rotate(45deg)}
+.gold-button{min-height:47px;width:100%;border:1px solid #f0cf82;border-radius:5px;background:linear-gradient(180deg,#c99b46,#795322 52%,#493017);box-shadow:inset 0 1px #fff7d3a0,0 4px 0 #120d07,0 0 20px #e6ae4530;text-shadow:0 2px #442b0c;color:#fff0c9;font:800 13px "Cinzel";letter-spacing:2px}
+.gold-button:active:not(:disabled){transform:translateY(2px);filter:brightness(1.15)}
+.gold-button:disabled{opacity:.35;filter:grayscale(.7);cursor:not-allowed}
+.text-button{border:0;background:transparent;color:#e4c780;text-decoration:underline;font-size:11px;padding:10px}
+.footnote{text-align:center;font-size:9px;color:#79694e;margin:8px 0 0}
+.loading-screen{align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse,#342518,#100e0b 70%);z-index:10}
+.loading-screen h2{font:700 20px "Cinzel";color:#f3d38b;margin:22px 0}
+.rune-loader{width:78px;height:78px;border:2px solid #b58b42;border-radius:50%;position:relative;box-shadow:0 0 24px #d3a23d38,inset 0 0 14px #d3a23d22;animation:spin 5s linear infinite}
+.rune-loader:before{content:"";position:absolute;inset:8px;border:1px dashed #f0d18b;border-radius:50%}
+.rune-loader span{position:absolute;inset:27px;background:#ffe2a0;transform:rotate(45deg);box-shadow:0 0 14px #f4c45b}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-track{width:150px;height:3px;background:#3a2b19;overflow:hidden}.loading-track span{display:block;height:100%;width:35%;background:#f4d18b;animation:loadTrack 1.1s ease-in-out infinite}
+@keyframes loadTrack{from{transform:translateX(-110%)}to{transform:translateX(390%)}}
+.game-screen{gap:7px;padding-bottom:max(5px,env(safe-area-inset-bottom))}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:38px}
+.topbar h2{font:700 17px "Cinzel";color:#f1d18a;margin:2px 0 0}
+.hero-mini{text-align:right;display:flex;flex-direction:column;gap:2px;max-width:50%}.hero-mini span{font:700 9px "Cinzel";color:#9bd18c}.hero-mini strong{font-size:10px;color:#cbb78f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hud-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.resource-card{padding:7px 8px;border:1px solid #60482b;border-radius:5px;background:linear-gradient(140deg,#34281a,#17130e);box-shadow:inset 0 0 0 1px #080806,0 3px 7px #0005;position:relative}
+.resource-label{display:flex;justify-content:space-between;gap:4px;align-items:center;margin-bottom:5px;font:700 8px "Cinzel";color:#bca980}
+.resource-label b{font:600 10px "Roboto Slab";color:#f2dfb6;white-space:nowrap}
+.meter{height:7px;border:1px solid #493b28;background:#0b0b09;border-radius:2px;overflow:hidden}
+.meter i{display:block;height:100%;width:100%;transition:width .35s;box-shadow:inset 0 1px #ffffff44}
+.hp-card .meter i{background:linear-gradient(90deg,#771c26,#e95754)}.mp-card .meter i{background:linear-gradient(90deg,#204f99,#59b8f4)}
+.gold-card .meter i{background:linear-gradient(90deg,#8b5c18,#f5d16a)}.xp-card .meter i{background:linear-gradient(90deg,#286344,#80d77c)}
+.resource-card.pulse{animation:resourcePulse .42s ease}
+@keyframes resourcePulse{50%{filter:brightness(1.65);box-shadow:0 0 18px #f2ce7450}}
+.float-number{position:absolute;right:8px;top:-4px;z-index:5;font:800 12px "Roboto Slab";pointer-events:none;animation:floatUp .95s ease forwards;text-shadow:0 2px #000}
+.float-number.positive{color:#9ee18d}.float-number.negative{color:#ff7777}
+@keyframes floatUp{to{transform:translateY(-24px);opacity:0}}
+.tab-content{flex:1;min-height:0;position:relative;overflow:hidden}
+.tab-panel{display:none;position:absolute;inset:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#78592d transparent;padding:1px 1px 5px}
+.tab-panel.active{display:flex;flex-direction:column;gap:7px;animation:riseIn .22s ease}
+.map-shell{position:relative;flex:1 1 180px;min-height:145px;max-height:300px;border:2px solid #896a37;border-radius:6px;overflow:hidden;background:#1a2d20;box-shadow:inset 0 0 0 3px #11100b,0 4px 10px #0007}
+#world-map{display:block;width:100%;height:100%;touch-action:manipulation}
+.map-stamp{position:absolute;top:7px;left:8px;background:#100e0bd9;border:1px solid #b38c4c;padding:4px 6px;font:700 8px "Cinzel";letter-spacing:1px;color:#ecd19a;pointer-events:none}
+.map-key{position:absolute;bottom:6px;right:6px;background:#0e0e0bd9;padding:4px 6px;font-size:8px;color:#c8b994;display:flex;align-items:center;gap:5px;pointer-events:none}
+.key-dot{width:6px;height:6px;border-radius:50%;display:inline-block}.key-dot.open{background:#e4c46f}.key-dot.locked{background:#65716a}
+.zone-caption{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:10px;color:#c5b38d}.zone-caption strong{font:700 11px "Cinzel";color:#f0d18c}.zone-caption span{text-align:right;font-size:9px;color:#93846a}
+.action-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.action-button{min-width:0;min-height:67px;padding:7px 4px;border:1px solid #6c512b;border-radius:5px;background:linear-gradient(150deg,#382a1b,#19140e);box-shadow:inset 0 1px #ffffff0c,0 3px 0 #0c0906,0 4px 9px #0005;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;position:relative;transition:filter .15s,transform .15s,border-color .15s}
+.action-button:active{transform:translateY(2px);filter:brightness(1.35)}
+.action-button b{font:700 9px "Cinzel";text-align:center;line-height:1.2}.action-button small{font-size:8px;color:#b6a17d;text-align:center}
+.action-glyph,.slot-icon{width:19px;height:21px;display:block;position:relative}
+.sword-glyph:before{content:"";position:absolute;width:4px;height:20px;left:8px;top:0;transform:rotate(40deg);background:linear-gradient(90deg,#666,#f1e6c7,#777);clip-path:polygon(50% 0,100% 12%,58% 78%,58% 100%,42% 100%,42% 78%,0 12%)}
+.sword-glyph:after{content:"";position:absolute;left:3px;top:14px;width:14px;height:3px;background:#bb8b43;transform:rotate(40deg)}
+.chest-glyph{width:21px;height:15px;margin-top:4px;border:2px solid #d0a451;border-radius:3px;background:linear-gradient(#9a6b31,#4c2c15)}
+.chest-glyph:before{content:"";position:absolute;left:7px;top:-2px;height:14px;width:3px;background:#e4bd69}
+.chest-glyph:after{content:"";position:absolute;left:8px;top:4px;width:3px;height:3px;background:#f5df9a}
+.fire-glyph:before{content:"";position:absolute;left:3px;top:0;width:14px;height:19px;background:linear-gradient(#fff1a0,#ed7a28 55%,#a32a1c);clip-path:polygon(55% 0,100% 55%,83% 87%,50% 100%,17% 87%,0 56%,35% 34%);filter:drop-shadow(0 0 4px #e8732d);animation:flame 1.1s alternate infinite}
+.fire-glyph:after{content:"";position:absolute;bottom:0;left:0;width:20px;height:4px;background:#73502d;transform:rotate(-8deg)}
+@keyframes flame{to{transform:scale(.9) skewX(4deg)}}
+.journal{padding:8px 9px;flex:0 1 108px;min-height:76px;max-height:108px;background:linear-gradient(145deg,#cdb78c,#a88a5b);border:3px double #5b4124;color:#392919;box-shadow:inset 0 0 15px #54371e4d}
+.panel-title{font:800 9px "Cinzel";letter-spacing:1px;border-bottom:1px solid #8c7049;padding-bottom:5px;margin-bottom:5px;color:#4b321c}
+.log-list{overflow-y:auto;max-height:75px;font-size:10px;line-height:1.4;scrollbar-width:thin;scrollbar-color:#886a3d transparent}
+.log-entry{margin:0 0 5px;animation:logIn .25s ease}.log-entry time{font-size:8px;color:#725537;margin-right:5px}
+@keyframes logIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.bottom-nav{flex:0 0 53px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #5e4729;border-radius:7px;background:linear-gradient(#292116,#14110d);box-shadow:inset 0 1px #ffffff10,0 4px 12px #0007;overflow:hidden}
+.nav-button{border:0;border-right:1px solid #3b2d1b;background:transparent;color:#968363;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;position:relative}
+.nav-button:last-child{border-right:0}.nav-button b{font:700 9px "Cinzel"}.nav-button.active{color:#f4d58c;background:linear-gradient(#6c4b21aa,#35251477);box-shadow:inset 0 2px #e4bd69}
+.nav-mark{width:16px;height:15px;display:block;position:relative}
+.map-mark{border:1px solid currentColor;clip-path:polygon(0 15%,30% 0,67% 15%,100% 0,100% 85%,67% 100%,30% 85%,0 100%);background:linear-gradient(90deg,transparent 30%,currentColor 32%,transparent 36%,transparent 64%,currentColor 67%,transparent 70%)}
+.crossed-mark:before,.crossed-mark:after{content:"";position:absolute;width:3px;height:17px;left:6px;top:-1px;background:currentColor;transform:rotate(43deg);border-radius:2px}.crossed-mark:after{transform:rotate(-43deg)}
+.hero-mark{border:1px solid currentColor;border-radius:50%;width:12px;height:12px;margin-bottom:2px}.hero-mark:after{content:"";position:absolute;left:-4px;top:9px;width:18px;height:8px;border:1px solid currentColor;border-radius:8px 8px 2px 2px}
+.menu-mark:before{content:"";position:absolute;inset:1px 0;background:linear-gradient(currentColor 0 2px,transparent 2px 6px,currentColor 6px 8px,transparent 8px 12px,currentColor 12px 14px)}
+.nav-button.locked{color:#554b3c;filter:grayscale(1)}
+.chain-lock{position:absolute;top:4px;right:8px;width:12px;height:12px;border:1px solid #9b7a45;border-radius:3px;background:#1b1711}
+.chain-lock:before{content:"";position:absolute;left:2px;top:-6px;width:6px;height:7px;border:1px solid #9b7a45;border-radius:6px 6px 0 0}
+.combat-arena{display:flex;flex-direction:column;gap:7px;min-height:100%}.arena-heading{text-align:center;display:flex;flex-direction:column;gap:3px}.arena-heading strong{font:700 18px "Cinzel";color:#f0c982}
+.enemy-stage{position:relative;min-height:140px;max-height:220px;flex:1;background:radial-gradient(ellipse at 50% 65%,#583222,#1b1711 70%);border:1px solid #694b2a;border-radius:6px;overflow:hidden;display:grid;place-items:center}
+#enemy-canvas{width:100%;height:100%;max-height:220px}.enemy-stage.hit{animation:shake .28s linear}.hit-flash{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 45%,#fff8ccaa,transparent 50%)}
+.hit-flash.active{animation:hitFlash .35s ease}
+@keyframes hitFlash{0%{opacity:1}100%{opacity:0}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.enemy-health{padding:7px 8px;border:1px solid #5c4428;border-radius:4px;background:#1c1710}.enemy-health>div:first-child{display:flex;justify-content:space-between;font-size:9px;color:#c6b18a;margin-bottom:5px}
+.enemy-health .meter i{background:linear-gradient(90deg,#771b2a,#e4544f)}
+.combat-message{padding:8px;border-left:2px solid #c69b4b;background:#302316;color:#e0cda7;font-size:11px;min-height:36px;line-height:1.4}
+.combat-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}.combat-action{min-height:52px}.combat-action b{font-size:10px}
+.combat-journal{flex:0 0 78px;max-height:78px}.combat-journal .log-list{max-height:45px}
+.empty-state{margin:auto 0;padding:20px 16px;text-align:center}.empty-sigil{font-size:34px;color:#d2a856;text-shadow:0 0 18px #d5a33c66}.empty-state h3{font:700 17px "Cinzel";color:#e5c782;margin:8px 0}.empty-state p{font-size:11px;color:#a9997a;line-height:1.5}
+.hero-sheet{padding:12px;overflow-y:auto}.hero-sheet-top{display:flex;align-items:center;gap:10px}.hero-avatar{width:96px;flex:0 0 96px}.hero-sheet-top h3{font:700 18px "Cinzel";color:#f1d18c;margin:4px 0}.hero-sheet-top p{font-size:10px;color:#b4a17c;margin:0;line-height:1.4}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.stat-grid div{display:flex;justify-content:space-between;padding:8px;border:1px solid #4c3b25;background:#18140f;border-radius:4px;font-size:10px;color:#b5a17b}.stat-grid b{color:#f0d18a}
+.equipment-slot{display:flex;align-items:center;gap:10px;padding:9px;border:1px solid #59442a;border-radius:5px;background:#19150f;margin:6px 0}.slot-icon{flex:0 0 24px}.equipment-slot div{display:flex;flex-direction:column;gap:3px;flex:1}.equipment-slot small{font:700 8px "Cinzel";color:#998361}.equipment-slot b{font-size:11px}.equipment-slot strong{font-size:9px;color:#a5d19a}
+.shield-glyph:before{content:"";position:absolute;inset:0 2px 0;background:linear-gradient(90deg,#71542e,#e5c37b,#75552a);clip-path:polygon(0 0,100% 0,90% 65%,50% 100%,10% 65%)}
+#hero-potion{margin-top:8px;letter-spacing:.5px;font-size:10px}
+.menu-panel{padding:14px;overflow-y:auto}.setting-row{display:flex;align-items:center;justify-content:space-between;padding:12px 2px;border-bottom:1px solid #443521;font-size:11px;color:#d4c19b;position:relative}.setting-row input{position:absolute;opacity:0}.switch{width:34px;height:18px;border:1px solid #5d4b30;border-radius:20px;background:#17130e;position:relative}.switch:after{content:"";position:absolute;left:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#837258;transition:.2s}.setting-row input:checked+.switch{background:#446b43;border-color:#86a76d}.setting-row input:checked+.switch:after{left:18px;background:#d9e8b7}
+.save-status{font-size:10px;color:#9bc58c;margin:8px 0}.wide-button{width:100%;min-height:52px}.danger-button{width:100%;min-height:42px;margin-top:10px;border:1px solid #a94b42;border-radius:5px;background:linear-gradient(#6b2c27,#351713);font:700 10px "Cinzel";color:#f1b1a3}.menu-note{font-size:9px;line-height:1.5;color:#85775e;margin-top:12px}
+.modal-backdrop{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:20px;background:#070706d9;backdrop-filter:blur(4px)}.modal-card{width:100%;max-width:400px;padding:17px;max-height:82%;overflow-y:auto}.modal-card h2{font:700 19px "Cinzel";color:#f0d18c;margin:0 0 10px}.modal-card p{font-size:12px;line-height:1.55;color:#c5b28e}.modal-actions{display:flex;gap:7px}.modal-actions button{flex:1;min-height:40px}.toast{position:absolute;z-index:50;bottom:calc(64px + env(safe-area-inset-bottom));left:50%;transform:translate(-50%,12px);opacity:0;pointer-events:none;transition:.22s;background:#17130df2;border:1px solid #b38b48;padding:9px 14px;border-radius:5px;font-size:10px;max-width:90%;text-align:center;box-shadow:0 4px 18px #0008}.toast.show{opacity:1;transform:translate(-50%,0)}
+body.no-effects *{animation:none!important;transition:none!important}
+body.shake-screen #app{animation:shake .25s linear}
+@media(max-height:730px){.screen.creation-screen{padding-top:max(6px,env(safe-area-inset-top))}.crest{width:38px;height:38px;margin:0 auto 6px}.crest span{font-size:21px}.game-title{font-size:26px;margin-bottom:5px}.intro{margin-bottom:6px}.section-heading{margin:5px 0}.race-card{padding:4px 2px 6px}.avatar{max-width:83px}.race-info{min-height:90px;margin-top:6px;padding:8px}.race-info p{font-size:10px}.check-row{margin:4px 0}.gold-button{min-height:42px}.footnote{margin-top:5px}.game-screen{gap:5px}.map-shell{min-height:120px}.action-button{min-height:58px}.journal{flex-basis:88px;max-height:88px}.log-list{max-height:59px}.bottom-nav{flex-basis:49px}.enemy-stage{min-height:115px}.hero-sheet-top .avatar{max-width:88px}}
+@media(max-width:360px){.screen{padding-left:9px;padding-right:9px}.race-grid{gap:4px}.race-card b{font-size:10px}.race-card small{font-size:7px}.resource-card{padding:6px}.resource-label{font-size:7px}.resource-label b{font-size:9px}.action-button b{font-size:8px}.action-button small{font-size:7px}}
